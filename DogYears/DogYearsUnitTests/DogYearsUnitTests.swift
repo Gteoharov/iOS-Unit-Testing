@@ -42,6 +42,17 @@ class DogYearsUnitTests: XCTestCase {
         let result = calc.result
         XCTAssert(result == 0, "Calculator clear operation failed")
     }
+    
+    func testInfoLoading() {
+        
+        let url = "https://raw.githubusercontent.com/FahimF/Test/master/DogYears-Info.rtf"
+        HTTPClient.shared.get(url: url) {
+            (data, error) in
+            XCTAssertNil(error, "There was an error loading the InfoView content")
+            XCTAssertNotNil(data, "No data was received from the server for InfoView content")
+        }
+        
+     }
 
     func testPerformanceExample() {
         // This is an example of a performance test case.
