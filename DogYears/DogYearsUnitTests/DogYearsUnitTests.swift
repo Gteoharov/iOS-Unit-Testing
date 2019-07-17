@@ -36,6 +36,12 @@ class DogYearsUnitTests: XCTestCase {
         let res2 = calc.result
         XCTAssert(res1 == res2, "Calculator displayed result does not match calculation result")
     }
+    
+    func testClear() {
+        calc.clear()
+        let result = calc.result
+        XCTAssert(result == 0, "Calculator clear operation failed")
+    }
 
     func testPerformanceExample() {
         // This is an example of a performance test case.

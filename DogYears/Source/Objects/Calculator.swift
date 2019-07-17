@@ -54,6 +54,10 @@ class Calculator {
 	var lastOp: Op? {
 		return opStack.last
 	}
+    
+    func clear() {
+        self.result = 0.0
+    }
 	
 	func evaluate(op: String, arg: Double, type: Type) -> Double {
 		result = 0.0
