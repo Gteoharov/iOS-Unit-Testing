@@ -23,14 +23,6 @@ class DogYearsUnitTests: XCTestCase {
     }
     
     
-    func testSettingsScreen() {
-        let sb = UIStoryboard(name: "Main", bundle: nil)
-        XCTAssertNotNil(sb, "Could not instantiate storyboard for Settings View creation")
-        let vc = sb.instantiateViewController(withIdentifier: "SettingsView") as? SettingsViewController
-        XCTAssertNotNil(vc, "Coult not instantiate Settings view controller")
-        _ = vc?.view
-    }
-    
     func testMenuFailing() {
         
         var menu = Menu()

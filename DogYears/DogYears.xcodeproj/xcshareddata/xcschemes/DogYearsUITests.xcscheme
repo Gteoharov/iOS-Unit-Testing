@@ -17,26 +17,6 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "21C666CE22DF4EFA009F046E"
-               BuildableName = "DogYearsUnitTests.xctest"
-               BlueprintName = "DogYearsUnitTests"
-               ReferencedContainer = "container:DogYears.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "21572DB222E07B94009BEE8F"
-               BuildableName = "DogYearsPerformanceTests.xctest"
-               BlueprintName = "DogYearsPerformanceTests"
-               ReferencedContainer = "container:DogYears.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "21572DC022E089E0009BEE8F"
                BuildableName = "DogYearsUITests.xctest"
                BlueprintName = "DogYearsUITests"
