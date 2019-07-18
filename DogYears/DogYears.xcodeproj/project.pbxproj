@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		21572DAC22E064B7009BEE8F /* MockSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21572DAB22E064B7009BEE8F /* MockSession.swift */; };
+		21572DAE22E06560009BEE8F /* MockDataTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21572DAD22E06560009BEE8F /* MockDataTask.swift */; };
 		21C666D222DF4EFA009F046E /* DogYearsUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C666D122DF4EFA009F046E /* DogYearsUnitTests.swift */; };
+		21F1621622E053FC00E3F2A9 /* URLSessionDataTaskProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F1621522E053FC00E3F2A9 /* URLSessionDataTaskProtocol.swift */; };
+		21F1621822E0543E00E3F2A9 /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F1621722E0543E00E3F2A9 /* URLSessionProtocol.swift */; };
 		DD095FC71FA08EA200439546 /* Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD095FC61FA08EA200439546 /* Type.swift */; };
 		DD0FC24C1F973170003495E0 /* Calculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0FC24B1F973170003495E0 /* Calculator.swift */; };
 		DD0FC24E1F974FB8003495E0 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0FC24D1F974FB8003495E0 /* RoundedButton.swift */; };
@@ -46,9 +50,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		21572DAB22E064B7009BEE8F /* MockSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSession.swift; sourceTree = "<group>"; };
+		21572DAD22E06560009BEE8F /* MockDataTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataTask.swift; sourceTree = "<group>"; };
 		21C666CF22DF4EFA009F046E /* DogYearsUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DogYearsUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		21C666D122DF4EFA009F046E /* DogYearsUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogYearsUnitTests.swift; sourceTree = "<group>"; };
 		21C666D322DF4EFB009F046E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		21F1621522E053FC00E3F2A9 /* URLSessionDataTaskProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionDataTaskProtocol.swift; sourceTree = "<group>"; };
+		21F1621722E0543E00E3F2A9 /* URLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
 		DD095FC61FA08EA200439546 /* Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Type.swift; sourceTree = "<group>"; };
 		DD0FC24B1F973170003495E0 /* Calculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculator.swift; sourceTree = "<group>"; };
 		DD0FC24D1F974FB8003495E0 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
@@ -180,6 +188,10 @@
 		DDED15A71F96E483000C1150 = {
 			isa = PBXGroup;
 			children = (
+				21572DAD22E06560009BEE8F /* MockDataTask.swift */,
+				21572DAB22E064B7009BEE8F /* MockSession.swift */,
+				21F1621522E053FC00E3F2A9 /* URLSessionDataTaskProtocol.swift */,
+				21F1621722E0543E00E3F2A9 /* URLSessionProtocol.swift */,
 				DD7F8B111F96F93A00456B70 /* Source */,
 				DD7F8B121F96F95000456B70 /* Resources */,
 				21C666D022DF4EFA009F046E /* DogYearsUnitTests */,
@@ -313,6 +325,8 @@
 				DD5CAC391F96FD3F00631B7E /* Menu.swift in Sources */,
 				DD7F8B1B1F96FB7E00456B70 /* MenuCell.swift in Sources */,
 				DD0FC24C1F973170003495E0 /* Calculator.swift in Sources */,
+				21572DAE22E06560009BEE8F /* MockDataTask.swift in Sources */,
+				21572DAC22E064B7009BEE8F /* MockSession.swift in Sources */,
 				DD0FC2501F97516F003495E0 /* RoundedLabel.swift in Sources */,
 				DD095FC71FA08EA200439546 /* Type.swift in Sources */,
 				DD2221451FB35249000D86F9 /* HTTPClient.swift in Sources */,
@@ -320,10 +334,12 @@
 				DD5CAC411F970AE200631B7E /* AboutViewController.swift in Sources */,
 				DD5CAC3D1F970AC900631B7E /* InfoViewController.swift in Sources */,
 				DD0FC24E1F974FB8003495E0 /* RoundedButton.swift in Sources */,
+				21F1621622E053FC00E3F2A9 /* URLSessionDataTaskProtocol.swift in Sources */,
 				DDED15B61F96E484000C1150 /* MenuViewController.swift in Sources */,
 				DD5CAC3B1F970ABB00631B7E /* CalculatorViewController.swift in Sources */,
 				DDED15B41F96E484000C1150 /* AppDelegate.swift in Sources */,
 				DD9E69E51FA1E2A100388647 /* Theme.swift in Sources */,
+				21F1621822E0543E00E3F2A9 /* URLSessionProtocol.swift in Sources */,
 				DD9E69E31FA1E21D00388647 /* Themes.swift in Sources */,
 				DD9E69DD1FA1C2AD00388647 /* ThemeCell.swift in Sources */,
 				DD9E69E11FA1E06D00388647 /* UIColor-Extras.swift in Sources */,

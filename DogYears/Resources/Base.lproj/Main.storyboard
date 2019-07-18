@@ -114,7 +114,7 @@
         <!--Information-->
         <scene sceneID="Vyb-Tb-E1O">
             <objects>
-                <viewController storyboardIdentifier="InfoView" id="43e-78-LHs" customClass="InfoViewController" customModule="DogYears" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InformationView" id="43e-78-LHs" customClass="InfoViewController" customModule="DogYears" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9zl-wT-7Gd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

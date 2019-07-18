@@ -12,6 +12,7 @@ import XCTest
 class DogYearsUnitTests: XCTestCase {
     
     let calc = Calculator()
+    var resData: Data? = nil
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -19,6 +20,22 @@ class DogYearsUnitTests: XCTestCase {
 
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+    }
+    
+    func testSettingsScreen() {
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        XCTAssertNotNil(sb, "Could not instantiate storyboard for Settings View creation")
+        let vc = sb.instantiateViewController(withIdentifier: "SettingsView") as? SettingsViewController
+        XCTAssertNotNil(vc, "Coult not instantiate Settings view controller")
+        _ = vc?.view
+    }
+    
+    func testMenuFailing() {
+        
+        var menu = Menu()
+        menu.loadMenu(path: "Dummy.plist")
+        let count = menu.count
+        XCTAssert(count == 0, "Menu loaded menu items for non-existent menu file.")
     }
 
     func testAdd() {
@@ -46,12 +63,20 @@ class DogYearsUnitTests: XCTestCase {
     func testInfoLoading() {
         
         let url = "https://raw.githubusercontent.com/FahimF/Test/master/DogYears-Info.rtf"
-        HTTPClient.shared.get(url: url) {
+        let session = MockSession()
+        let client = HTTPClient(session: session)
+        client.get(url: url) {
             (data, error) in
-            XCTAssertNil(error, "There was an error loading the InfoView content")
-            XCTAssertNotNil(data, "No data was received from the server for InfoView content")
+            self.resData = data
         }
-        
+        let pred = NSPredicate(format: "resData != nil")
+        let exp = expectation(for: pred, evaluatedWith: self, handler: nil)
+        let res = XCTWaiter.wait(for: [exp], timeout: 5.0)
+        if res == XCTWaiter.Result.completed {
+            XCTAssertNotNil(resData, "No data recived from the server for InfoView content")
+        } else {
+            XCTAssert(false, "The call to get the URL ran into some other error")
+        }
      }
 
     func testPerformanceExample() {
