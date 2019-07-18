@@ -29,10 +29,37 @@ class DogYearsUITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
+    func isPad() -> Bool {
+        return UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad
+    }
+    
+    func isPortrait() -> Bool {
+        return UIDeviceOrientation.portrait.isPortrait
+    }
+    
+    func navigateBack() {
+        if isPad() {
+            if isPortrait() {
+                app.buttons["Master"].tap()
+                
+            }
+        } else {
+            app.navigationBars["Master"].buttons["Menu"].tap()
+        }
+    }
+    
+    func testCalculatorEntry() {
+        
+        let display = app.staticTexts.matching(identifier: "result").firstMatch
+        app.buttons["2"].tap()
+        app.buttons["4"].tap()
+        
+        XCTAssert(display.label == "24", "The calculator display value did not change")
+    }
+    
     func testInfoNavigation() {
         
-        let app = XCUIApplication()
-        app.navigationBars["Master"].buttons["Menu"].tap()
+        navigateBack()
         app.tables/*@START_MENU_TOKEN@*/.staticTexts["Information"]/*[[".cells.staticTexts[\"Information\"]",".staticTexts[\"Information\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
         let nav = app.navigationBars["Information"]
         XCTAssert(nav.exists, "The Information view navigation bar does not exist")
@@ -41,8 +68,7 @@ class DogYearsUITests: XCTestCase {
     
     func testSettingsNavigation() {
         
-        let app = XCUIApplication()
-        app.navigationBars["Master"].buttons["Menu"].tap()
+        navigateBack()
         app.tables.staticTexts["Settings"].tap()
         let nav = app.navigationBars["Settings"]
         XCTAssert(nav.exists, "The Settings view navigation bar does not exist")
@@ -50,29 +76,39 @@ class DogYearsUITests: XCTestCase {
     
     func testAboutNavigation() {
         
-        let app = XCUIApplication()
-        app.navigationBars["Master"].buttons["Menu"].tap()
+        navigateBack()
         app.tables.staticTexts["About"].tap()
         let nav = app.navigationBars["About"]
         XCTAssert(nav.exists, "The About view navigation bar does not exist")
     }
     
-    func testExample() {
-        
-        let navBar = app.navigationBars["Master"]
-        let button = navBar.buttons["Menu"]
-        button.tap()
-        
-        XCTAssertFalse(navBar.exists, "The old navigation bar no longer exists")
-        let nav2 = app.navigationBars["Menu"]
-        XCTAssert(nav2.exists, "The new navigation bar does not exist")
+    func testAboutRate() {
         
         
+        let tablesQuery = XCUIApplication().tables
+        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["About"]/*[[".cells.staticTexts[\"About\"]",".staticTexts[\"About\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        tablesQuery/*@START_MENU_TOKEN@*/.buttons["Rate Us On the App Store"]/*[[".cells.buttons[\"Rate Us On the App Store\"]",".buttons[\"Rate Us On the App Store\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        let element = app.children(matching: .other).element(boundBy: 0)
         
-        app.navigationBars["Master"].buttons["Menu"].tap()
-        app.tables/*@START_MENU_TOKEN@*/.staticTexts["Information"]/*[[".cells.staticTexts[\"Information\"]",".staticTexts[\"Information\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        
+        let pred = NSPredicate(format: "exists == true")
+        let exp = expectation(for: pred, evaluatedWith: element, handler: nil)
+        let res = XCTWaiter.wait(for: [exp], timeout: 5.0)
+        XCTAssert(res == XCTWaiter.Result.completed, "Failed time out waiting for rate dialog")
+        
+        let title = element.staticTexts["Enjoying DogYears?"]
+        XCTAssert(title.exists, "Enjoying DogYears dialog did not show!")
+        element.staticTexts["Not Now"].tap()
+        XCTAssert(!title.exists, "Enjoying DogYears dialog did not go away!")
         
         
+    }
+    
+    func testNavigationBackToMenu() {
+        
+        navigateBack()
+        let nav = app.navigationBars["Menu"]
+        XCTAssert(nav.exists, "The new navigation bar does not exist")
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
