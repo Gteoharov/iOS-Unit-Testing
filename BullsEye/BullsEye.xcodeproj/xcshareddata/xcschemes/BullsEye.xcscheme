@@ -52,16 +52,6 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "21746A2522EE2F8500FE0EF1"
-               BuildableName = "HalfTunesFakeTests.xctest"
-               BlueprintName = "HalfTunesFakeTests"
-               ReferencedContainer = "container:BullsEye.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "21746A4122EE342400FE0EF1"
                BuildableName = "BullsEyeUITests.xctest"
                BlueprintName = "BullsEyeUITests"

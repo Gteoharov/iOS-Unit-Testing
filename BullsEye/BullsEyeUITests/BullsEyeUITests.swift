@@ -48,9 +48,6 @@ class BullsEyeUITests: XCTestCase {
   
   func testGameStyleSwitch() {
     
-    app.segmentedControls.buttons["Slide"]
-    app.staticTexts["Get as close as you can to: "]
-    
     // given
     let slideButton = app.segmentedControls.buttons["Slide"]
     let typeButton = app.segmentedControls.buttons["Type"]
