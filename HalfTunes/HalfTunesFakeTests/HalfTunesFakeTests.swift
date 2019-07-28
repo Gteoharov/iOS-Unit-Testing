@@ -29,13 +29,22 @@
 import XCTest
 @testable import HalfTunes
 
-class HalfTunesSlowTests: XCTestCase {
-  
-  var sut: URLSession!
+class HalfTunesFakeTests: XCTestCase {
+  var sut: SearchViewController!
   
   override func setUp() {
     super.setUp()
-    sut = URLSession(configuration: .default)
+    sut = UIStoryboard(name: "Main", bundle: nil)
+      .instantiateInitialViewController() as? SearchViewController
+    let testBundle = Bundle(for: type(of: self))
+    let path = testBundle.path(forResource: "abbaData", ofType: "json")
+    let data = try? Data(contentsOf: URL(fileURLWithPath: path!), options: .alwaysMapped)
+    
+    let url = URL(string: "https://itunes.apple.com/search?media=music&entity=song&term=abba")
+    let urlResponse = HTTPURLResponse(url: url!, statusCode: 200, httpVersion: nil, headerFields: nil)
+    
+    let sessionMock = URLSessionMock(data: data, response: urlResponse, error: nil)
+    sut.defaultSession = sessionMock
   }
   
   override func tearDown() {
@@ -43,49 +52,29 @@ class HalfTunesSlowTests: XCTestCase {
     super.tearDown()
   }
   
-  func testValidCallToiTunesGetsHTTPStatusCode200() {
-    //give
-    let url = URL(string: "https://itunes.apple.com/search?media=music&entity=song&term=abba")
-    
-    //1
+  func test_UpdateSearchResults_ParseData() {
+    // given
     let promise = expectation(description: "Status code: 200")
     
-    //when
-    let dataTask = sut.dataTask(with: url!) { data, response, error in
-      //then
-      if let error = error {
-        XCTFail("Error: \(error.localizedDescription)")
-        return
-      } else if let statusCode = (response as? HTTPURLResponse)?.statusCode {
-        if statusCode == 200 {
-          //2
-          promise.fulfill()
-        } else {
-          XCTFail("Status Code: \(statusCode)")
-        }
-      }
-    }
-    dataTask.resume()
-    //3
-    wait(for: [promise], timeout: 5.0)
-  }
-  
-  func testCallToiTunesCompletes() {
+    // when
+    XCTAssertEqual(
+      sut.searchResults.count,
+      0,
+      "searchResults should be empty before the data task runs")
     let url = URL(string: "https://itunes.apple.com/search?media=music&entity=song&term=abba")
-    let promise = expectation(description: "Completion handler invoked")
-    var statusCode: Int?
-    var responseError: Error?
-    
-    //when
-    let dataTask = sut.dataTask(with: url!) { data, response, error in
-      statusCode = (response as? HTTPURLResponse)?.statusCode
-      responseError = error
+    let dataTask = sut.defaultSession.dataTask(with: url!) { data, response, error in
+      if let error = error {
+        print(error.localizedDescription)
+      } else if let httpResponse = response as? HTTPURLResponse,
+        httpResponse.statusCode == 200 {
+          self.sut.updateSearchResults(data)
+      }
       promise.fulfill()
     }
     dataTask.resume()
-    wait(for: [promise], timeout: 5.0)
+    wait(for: [promise], timeout: 5)
     
-    XCTAssertNil(responseError)
-    XCTAssertEqual(statusCode, 200)
+    // then
+    XCTAssertEqual(sut.searchResults.count, 3, "Didn't parse 3 items from fake response")
   }
 }

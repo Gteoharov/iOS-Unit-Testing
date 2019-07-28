@@ -38,6 +38,16 @@
                ReferencedContainer = "container:HalfTunes.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "21DDD4A122EE286E00CED5B2"
+               BuildableName = "HalfTunesFakeTests.xctest"
+               BlueprintName = "HalfTunesFakeTests"
+               ReferencedContainer = "container:HalfTunes.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
